@@ -1,27 +1,43 @@
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-rootProject.name = "RssReader"
-
 pluginManagement {
     repositories {
-        google()
-        gradlePluginPortal()
+        google {
+            mavenContent {
+                includeGroupAndSubgroups("androidx")
+                includeGroupAndSubgroups("com.android")
+                includeGroupAndSubgroups("com.google")
+            }
+        }
         mavenCentral()
+        gradlePluginPortal()
     }
     plugins {
         kotlin("jvm") version "2.2.0"
     }
 }
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
-}
 
 dependencyResolutionManagement {
     repositories {
-        google()
+        google {
+            mavenContent {
+                includeGroupAndSubgroups("androidx")
+                includeGroupAndSubgroups("com.android")
+                includeGroupAndSubgroups("com.google")
+            }
+        }
         mavenCentral()
     }
 }
 
-include(":composeApp")
-include(":shared")
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+}
+
+rootProject.name = "KMMArchitectureDemo"
+include(":data")
+include(":core:network")
+include(":core:ui")
+include(":feature:login")
+include(":androidApp")
+include(":desktopApp")
+include(":webApp")
