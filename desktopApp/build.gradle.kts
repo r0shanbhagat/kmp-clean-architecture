@@ -15,7 +15,7 @@ version = (project.findProperty("version") as? String)?.takeIf { it.isNotBlank()
 kotlin {
     jvm("desktop") {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget.set(JvmTarget.JVM_17)
         }
     }
 
