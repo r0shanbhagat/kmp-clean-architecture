@@ -1,5 +1,4 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.compose.compiler)
@@ -13,12 +12,7 @@ group =
 version = (project.findProperty("version") as? String)?.takeIf { it.isNotBlank() } ?: "1.0.0"
 
 kotlin {
-    jvm("desktop") {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
-
+    jvm("desktop")
     sourceSets {
         val desktopMain by getting {
             // include Java source dir which currently holds the Kotlin main.kt file

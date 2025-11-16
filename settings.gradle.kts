@@ -11,8 +11,9 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+    includeBuild("build-logic")
     plugins {
-        kotlin("jvm") version "2.2.0"
+        kotlin("jvm") version "2.2.21"
     }
 }
 
@@ -33,7 +34,7 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
 
-rootProject.name = "KMMArchitectureDemo"
+rootProject.name = "KMMDemo"
 include(":data")
 include(":core:network")
 include(":core:ui")
@@ -41,3 +42,4 @@ include(":feature:login")
 include(":androidApp")
 include(":desktopApp")
 include(":webApp")
+include(":iosMainApp")

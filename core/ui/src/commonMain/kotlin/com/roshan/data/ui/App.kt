@@ -24,12 +24,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kmmarchitecturedemo.core.ui.generated.resources.Res
-import kmmarchitecturedemo.core.ui.generated.resources.eg
-import kmmarchitecturedemo.core.ui.generated.resources.fr
-import kmmarchitecturedemo.core.ui.generated.resources.id
-import kmmarchitecturedemo.core.ui.generated.resources.jp
-import kmmarchitecturedemo.core.ui.generated.resources.mx
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -59,7 +53,7 @@ val defaultCountries = listOf(
 
 @Composable
 @Preview
-fun App(countries: List<Country> = defaultCountries, msg: String) {
+fun App(countries: List<Country> = defaultCountries, msg: String = "Default Message") {
     MaterialTheme {
         var showCountries by remember { mutableStateOf(false) }
         var timeAtLocation by remember { mutableStateOf("No location selected") }
