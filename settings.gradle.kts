@@ -10,8 +10,9 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        maven(url = "https://jitpack.io")
+        maven(url = "https://plugins.gradle.org/m2/")
     }
-    includeBuild("build-logic")
     plugins {
         kotlin("jvm") version "2.2.21"
     }
@@ -27,6 +28,8 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
+        maven(url = "https://jitpack.io")
+        maven(url = "https://plugins.gradle.org/m2/")
     }
 }
 
@@ -35,11 +38,21 @@ plugins {
 }
 
 rootProject.name = "KMMDemo"
-include(":data")
+includeBuild("build-logic")
 include(":core:network")
 include(":core:ui")
+include(":data")
 include(":feature:login")
 include(":androidApp")
 include(":desktopApp")
 include(":webApp")
 include(":iosMainApp")
+
+//Run Desktop: ./gradlew :desktop:run
+//Run Web: ./gradlew wasmJsBrowserDevelopmentRun
+//Generate AAR : ./gradlew :yourLibraryModule:assembleDebug/assembleRelease
+//Generate Framework : ./gradlew :yourLibraryModule:assembleDebugXCFramework /assembleReleaseXCFramework
+//tasks.register("makeSDK") {
+//    dependsOn("assembleReleaseXCFramework", "assembleRelease")
+//}
+
