@@ -30,11 +30,6 @@ kotlin {
     }
 
     sourceSets {
-        all {
-            languageSettings {
-                optIn("kotlin.time.ExperimentalTime")
-            }
-        }
 
         wasmJsMain.dependencies {
             implementation(compose.runtime)

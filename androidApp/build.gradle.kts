@@ -5,15 +5,17 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
 }
+val packageName = "com.roshan.app"
+
 android {
-    namespace = "com.roshan.myapplication.android"
+    namespace = packageName
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.roshan.myapplication.android"
+        applicationId = packageName
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 2
+        versionCode = 1
         versionName = "1.1"
     }
     buildFeatures {
@@ -75,10 +77,10 @@ android {
 }
 
 dependencies {
-    implementation(projects.feature.login)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
     implementation(libs.activity.compose)
     debugImplementation(libs.compose.ui.tooling)
+    implementation(projects.feature.login)
 }

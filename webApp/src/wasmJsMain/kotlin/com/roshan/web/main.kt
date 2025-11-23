@@ -2,7 +2,7 @@ package com.roshan.web
 
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
-import com.roshan.data.ui.App
+import com.roshan.core.ui.App
 import com.roshan.feature.login.Greeting
 
 @JsModule("@js-joda/timezone")

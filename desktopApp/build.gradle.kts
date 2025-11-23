@@ -6,10 +6,10 @@ plugins {
     alias(libs.plugins.compose.multiplatform)
 }
 
-// Use safe lookup for optional project properties. If they aren't provided, fall back to sensible defaults.
-group =
-    (project.findProperty("package") as? String)?.takeIf { it.isNotBlank() } ?: "com.roshan.desktop"
-version = (project.findProperty("version") as? String)?.takeIf { it.isNotBlank() } ?: "1.0.0"
+val nameSpace = "com.roshan.desktop"
+val appVersion = "1.0.0"
+group = nameSpace
+version = appVersion
 
 kotlin {
     jvm("desktop")
@@ -34,8 +34,8 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.roshan.desktop"
-            packageVersion = "1.0.0"
+            packageName = nameSpace
+            packageVersion = appVersion
         }
         jvmArgs += listOf("-Xmx2G", "-XX:+UseG1GC")
     }

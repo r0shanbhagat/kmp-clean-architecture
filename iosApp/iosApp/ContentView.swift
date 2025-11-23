@@ -1,10 +1,12 @@
 import UIKit
 import SwiftUI
-import ComposeApp
+import IosKmpApp
 
 struct ComposeView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        MainViewControllerKt.MainViewController()
+        NSLog(Greeting().greet())
+        NSLog(DataGreeting().greet())
+        return KmpViewControllerKt.KmpViewController()
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {

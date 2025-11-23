@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+@file:OptIn(org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl::class)
 
 plugins {
     alias(libs.plugins.android.library)
@@ -7,11 +7,12 @@ plugins {
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose.hot.reload)
-    id("android-kmp")
+    id("build-logic")
 }
+val packageName = "com.roshan.core.ui"
 
 kotlin {
-    val xcfName = "core:ui"
+    val xcfName = "CoreUIApp"
     listOf(
         iosX64(),
         iosArm64(),
@@ -25,19 +26,17 @@ kotlin {
 
     jvm("desktop")
 
-    @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         browser()
     }
 
     sourceSets {
+        val desktopMain by getting
         all {
             languageSettings {
                 optIn("kotlin.time.ExperimentalTime")
             }
         }
-
-        val desktopMain by getting
 
         commonMain.dependencies {
             // Compose BOM
@@ -60,9 +59,7 @@ kotlin {
         iosMain.dependencies {
 
         }
-        desktopMain.dependencies {
-
-        }
+        desktopMain.dependencies { }
         wasmJsMain.dependencies {
             api(npm("@js-joda/timezone", "2.22.0"))
         }
@@ -70,7 +67,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.roshan.data.ui"
+    namespace = packageName
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -79,6 +76,6 @@ android {
 
 compose.resources {
     publicResClass = true
-    packageOfResClass = "com.roshan.data.ui"
+    packageOfResClass = packageName
     generateResClass = auto
 }

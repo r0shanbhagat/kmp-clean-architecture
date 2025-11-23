@@ -1,6 +1,6 @@
-@file:OptIn(ExperimentalWasmDsl::class)
+@file:OptIn(org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl::class)
 
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.android.library)
@@ -8,34 +8,32 @@ plugins {
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.compose.hot.reload)
-    id("android-kmp")
+    id("build-logic")
 }
 
+val packageName = "com.roshan.feature.login"
+
 kotlin {
+    val xcframework = XCFramework()
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "feature:loginKit"
+            baseName = "FeatureLoginApp"
             isStatic = true
+            xcframework.add(this)
         }
     }
 
     jvm("desktop")
-    @OptIn(ExperimentalWasmDsl::class)
+
     wasmJs {
         browser()
     }
 
     sourceSets {
-        all {
-            languageSettings {
-                optIn("kotlin.time.ExperimentalTime")
-            }
-        }
-
         val desktopMain by getting
 
         commonMain.dependencies {
@@ -47,23 +45,15 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             api(projects.data)
         }
-        androidMain.dependencies {
-
-        }
-        iosMain.dependencies {
-
-        }
-        desktopMain.dependencies {
-
-        }
-        wasmJsMain.dependencies {
-
-        }
+        androidMain.dependencies { }
+        iosMain.dependencies { }
+        desktopMain.dependencies { }
+        wasmJsMain.dependencies { }
     }
 }
 
 android {
-    namespace = "com.roshan.feature.login"
+    namespace = packageName
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -72,6 +62,6 @@ android {
 
 compose.resources {
     publicResClass = true
-    packageOfResClass = "com.roshan.feature.login"
+    packageOfResClass = packageName
     generateResClass = auto
 }

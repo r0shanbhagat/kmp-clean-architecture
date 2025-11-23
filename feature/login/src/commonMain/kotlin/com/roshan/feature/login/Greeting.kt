@@ -1,8 +1,8 @@
 package com.roshan.feature.login
 
+import com.roshan.core.network.networkModule
+import com.roshan.core.ui.uiModule
 import com.roshan.data.dataModule
-import com.roshan.data.network.networkModule
-import com.roshan.data.ui.uiModule
 
 class Greeting {
     private val platform = featurePlatform()

@@ -1,6 +1,4 @@
 plugins {
-    // this is necessary to avoid the plugins to be loaded multiple times
-    // in each subproject's classloader
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.compose.multiplatform) apply false
@@ -13,6 +11,7 @@ plugins {
     alias(libs.plugins.compose.hot.reload) apply false
     id("com.google.devtools.ksp").version("2.2.20-2.0.3").apply(false)
     id("com.rickclephas.kmp.nativecoroutines").version("1.0.0-ALPHA-47").apply(false)
+    alias(libs.plugins.android.fusedlibrary) apply false
 }
 
 allprojects {

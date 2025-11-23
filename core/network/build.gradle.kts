@@ -1,14 +1,15 @@
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+@file:OptIn(org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl::class)
 
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.kotlin.multiplatform)
-    id("android-kmp")
+    id("build-logic")
 }
+val packageName = "com.roshan.core.network"
 
 kotlin {
-    val xcfName = "core:network"
+    val xcfName = "CoreNetworkApp"
     listOf(
         iosX64(),
         iosArm64(),
@@ -19,20 +20,15 @@ kotlin {
             isStatic = true
         }
     }
+
     jvm("desktop")
-    @OptIn(ExperimentalWasmDsl::class)
+
     wasmJs {
         browser()
     }
+
     sourceSets {
-        all {
-            languageSettings {
-                optIn("kotlin.time.ExperimentalTime")
-            }
-        }
-
         val desktopMain by getting
-
         commonMain.dependencies {
             //Network
             implementation(libs.ktor.core)
@@ -52,18 +48,15 @@ kotlin {
         iosMain.dependencies {
             implementation(libs.ktor.client.ios)
         }
-        desktopMain.dependencies {
-
-        }
+        desktopMain.dependencies { }
 
         wasmJsMain.dependencies {
-
         }
     }
 }
 
 android {
-    namespace = "com.roshan.data.network"
+    namespace = packageName
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()

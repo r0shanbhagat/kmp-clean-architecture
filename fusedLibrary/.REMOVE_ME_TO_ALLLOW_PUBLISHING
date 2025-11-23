@@ -1,0 +1,12 @@
+This is a marker to indicate that all sources must be removed from this module to allow publishing as a fused library.
+
+You must remove all source files (including tests) from:
+- src/main/
+- src/androidTest/
+- src/test/
+
+This file can be deleted after all sources are removed.
+// After removing all sources, you can delete this file to allow publishing.
+// Remember to commit the changes to your version control system.
+// Once this file is deleted, the module can be published as a fused library.
+// End of file.

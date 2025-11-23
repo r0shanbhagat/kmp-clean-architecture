@@ -6,7 +6,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import com.roshan.data.ui.App
+import com.roshan.core.ui.App
 import com.roshan.feature.login.Greeting
 
 fun main() = application {

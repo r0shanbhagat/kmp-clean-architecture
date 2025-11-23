@@ -13,6 +13,7 @@ pluginManagement {
         maven(url = "https://jitpack.io")
         maven(url = "https://plugins.gradle.org/m2/")
     }
+
     plugins {
         kotlin("jvm") version "2.2.21"
     }
@@ -46,13 +47,6 @@ include(":feature:login")
 include(":androidApp")
 include(":desktopApp")
 include(":webApp")
-include(":iosMainApp")
-
-//Run Desktop: ./gradlew :desktop:run
-//Run Web: ./gradlew wasmJsBrowserDevelopmentRun
-//Generate AAR : ./gradlew :yourLibraryModule:assembleDebug/assembleRelease
-//Generate Framework : ./gradlew :yourLibraryModule:assembleDebugXCFramework /assembleReleaseXCFramework
-//tasks.register("makeSDK") {
-//    dependsOn("assembleReleaseXCFramework", "assembleRelease")
-//}
-
+include(":IosKmpApp")
+include(":fusedLibrary-jvm")
+include(":fusedLibrary")
